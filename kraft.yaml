@@ -1,0 +1,47 @@
+---
+specification: '0.5'
+name: django
+unikraft:
+  version: '0.4'
+  kconfig:
+    - CONFIG_LIBUK9P=y
+    - CONFIG_LIB9PFS=y
+    - CONFIG_LIBDEVFS=y
+    - CONFIG_LIBDEVFS_AUTOMOUNT=y
+    - CONFIG_LIBVFSCORE_AUTOMOUNT_ROOTFS=y
+    - CONFIG_LIBVFSCORE_ROOTFS_9PFS=y
+    - CONFIG_LIBUKLIBPARAM=y
+targets:
+  - architecture: x86_64
+    platform: kvm
+libraries:
+  pthread-embedded:
+    version: '0.4'
+  lwip:
+    version: '0.4'
+  zlib:
+    version: '0.4'
+  libuuid:
+    version: '0.4'
+  newlib:
+    version: '0.4'
+  sqlite:
+    version: '0.4'
+    kconfig:
+      - CONFIG_LIBSQLITE=y
+      - CONFIG_LIBSQLITE_MAIN_FUNCTION=n
+  python3:
+    version: '0.4'
+    kconfig:
+      - CONFIG_LIBPYTHON3=y
+      - CONFIG_LIBPYTHON3_EXTENSIONS=y
+      - CONFIG_LIBPYTHON3_EXTENSION_SQLITE=y
+      - CONFIG_LIBPYTHON3_EXTENSION_EXPAT=y
+      - CONFIG_LIBPYTHON3_EXTENSION_LIBMPDEC=y
+      - CONFIG_LIBPYTHON3_EXTENSION_UUID=y
+      - CONFIG_LIBPYTHON3_EXTENSION_ZLIB=y
+      - CONFIG_LIBPYTHON3_MAIN_FUNCTION=y
+volumes:
+  fs0:
+    driver: 9pfs
+    source: ./rootfs.tgz
