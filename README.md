@@ -13,8 +13,8 @@ kraft build
 The filesystem:
 ```
 mkdir python_fs && cd $_
-cp ../minrootfs.tgz .
-tar -xf minrootfs.tgz
+cp ../rootfs.tgz .
+tar -xf rootfs.tgz
 ```
 
 ### Run
@@ -85,7 +85,7 @@ CONFIG_LIBSQLITE=y
 # CONFIG_LIBSQLITE_MAIN_FUNCTION is not set
 ```
 
-Added `extern PyObject* PyInit__sqlite3(void);` in `libs/python3/modules_config.c` in order to fix:
+Added `extern PyObject* PyInit__sqlite3(void);` in `../../libs/python3/modules_config.c` in order to fix:
 ```
 /media/Adina/ACS/Unikraft/usoc/hackathon/libs/python3/modules_config.c:293:16: error: ‘PyInit__sqlite3’ undeclared here (not in a function); did you mean ‘PyInit__tkinter’?
   293 |     {"sqlite", PyInit__sqlite3},
@@ -137,4 +137,7 @@ compilation terminated.
 Copied the missing header:
 ```
 cp build/libsqlite/origin/sqlite-amalgamation-3300100/sqlite3.h ../../libs/sqlite/include/
-```.
+```
+but this did not solve the problem.
+
+To be continued.
